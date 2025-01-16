@@ -8,6 +8,8 @@ from datetime import datetime
 from typing import List, Dict, Optional
 from dataclasses import dataclass
 from playwright.async_api import async_playwright
+import requests
+from frappe_api import test_write_to_frappe
 
 # Configure logging
 logging.basicConfig(
@@ -75,6 +77,194 @@ class PaknSaveScraper:
             logging.error(f"Error fetching product details from {product_url}: {e}")
             return details
 
+
+    async def fetch_categories(self, page) -> List[Dict[str, str]]:
+        """Fetch all available categories from the website."""
+        try:
+            await self.safe_get(page, 'https://www.paknsave.co.nz/shop/category/fresh-foods-and-bakery?pg=1')
+
+            # Close the tooltip if it appears
+            try:
+                tooltip_close_button = await page.query_selector('button._19kx3s2')
+                if tooltip_close_button:
+                    await tooltip_close_button.click()
+                    logging.info("Closed the tooltip")
+            except Exception as e:
+                logging.warning(f"Tooltip not found or unable to close it: {e}")
+
+            logging.info("Waiting for menu panel to load...")
+            groceries_button = await page.query_selector('//span[contains(text(), "Groceries")]/..')
+            if groceries_button:
+                await groceries_button.click()
+                logging.info("Clicked on the 'Groceries' menu item")
+                await asyncio.sleep(2)
+
+            categories = []
+            category_elements = await page.query_selector_all('button._177qnsx7')
+            for element in category_elements:
+                category_name = await element.inner_text()
+                if category_name.lower() in ["featured", "all null"]:
+                    continue
+                url_name = re.sub(r'[^a-zA-Z0-9 ]', '', category_name.lower()).replace(" & ", "-and-").replace(" ", "-")
+                url_name = url_name.replace("--", "-and-")
+                category_url = f"{self.config.base_url}/shop/category/{url_name}?pg=1"
+                categories.append({"name": category_name, "url": category_url})
+                logging.info(f"Found category: {category_name} - URL: {category_url}")
+
+            logging.info(f"Successfully fetched {len(categories)} categories")
+            return categories
+
+        except Exception as e:
+            logging.error(f"Error in fetch_categories: {e}", exc_info=True)
+            return []
+
+
+    async def save_progress(self):
+        """Save current progress to a temporary file."""
+        temp_filename = f"paknsave_products_temp_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.json"
+        try:
+            with open(temp_filename, 'w') as f:
+                json.dump(self.all_products, f, indent=4)
+            logging.info(f"Progress saved to {temp_filename}")
+        except Exception as e:
+            logging.error(f"Error saving progress: {e}")
+
+ 
+    async def scrape_products(self, page, category_url: str) -> List[Dict]:
+        """Scrape products from the given category URL."""
+        try:
+            await self.safe_get(page, category_url)
+            await asyncio.sleep(self.config.page_load_delay)
+
+            products = []
+            
+            while True:
+                await asyncio.sleep(random.uniform(2, 5))  # Random delay
+                product_elements = await page.query_selector_all('div[data-testid$="-EA-000"]')
+
+                for element in product_elements:
+                    product_data = await self.extract_product_data(element)
+                    if product_data:
+                        # Transform product data to match Frappe schema
+                        frappe_product = self.transform_to_frappe_format(product_data)
+                        
+                        try:
+                            # Write to Frappe
+                            test_write_to_frappe(frappe_product)
+                            logging.info(f"Successfully sent product to Frappe: {frappe_product['productname']}")
+                            
+                            # Add to products list after successful Frappe write
+                            products.append(product_data)
+                            logging.info(f"Scraped product: {product_data.get('name')}")
+                        except Exception as e:
+                            logging.error(f"Error writing product to Frappe: {e}")
+                    else:
+                        logging.warning("Product data extraction returned None.")
+
+                next_page = await page.query_selector('a[data-testid="pagination-increment"]')
+                if next_page:
+                    await next_page.click()
+                    await page.wait_for_load_state('networkidle')
+                else:
+                    break
+
+            logging.info(f"Total products scraped: {len(products)}")
+            return products
+            
+        except Exception as e:
+            logging.error(f"Error scraping products: {e}")
+            return []
+
+    def transform_to_frappe_format(self, product: Dict) -> Dict:
+        """Transform scraped product data to Frappe format."""
+        
+        # Extract price value from string and convert to float
+        price_str = product.get('price', '0.00')
+        try:
+            current_price = float(price_str)
+        except ValueError:
+            current_price = 0.00
+
+        # Extract the product ID and other fields
+        product_id = product.get("product_id")
+        product_name = product.get("name")
+        category = product.get("category")  # Make sure to fetch this from the product data
+        source_site = product.get("sourceSite")
+        
+        # Extract unit information
+        unit_info = self.extract_unit_info(product.get('name', ''), product.get('subtitle', ''))
+
+        transformed_product = {
+            "product_id": product_id,  # Extracted product ID
+            "productname": product_name,  # Product Name
+            "category": category,  # Category from the product data
+            "source_site": source_site,  # Source Site
+            "size": unit_info['size'],  # Size extracted from unit info
+            "image_url": product.get('imageUrl', ''),  # Image URL
+            "unit_price": unit_info['unit_price'] or current_price,  # Unit Price
+            "unit_name": unit_info['unit_name'],  # Unit Name
+            "original_unit_quantity": 1.0,  # Default value
+            "current_price": current_price,  # Current Price
+            "price_history": '',  # Initialize as empty or provide logic to fill
+            "last_updated": product['lastUpdated'],  # Last Updated
+            "last_checked": product['lastChecked'],  # Last Checked
+            "product_categories": self.build_category_hierarchy(product.get('category', ''))  # Category hierarchy
+        }
+
+        logging.info(f"Transformed product: {transformed_product}")
+        return transformed_product
+
+    def extract_unit_info(self, name: str, subtitle: str) -> Dict:
+        """Extract unit information from product name and subtitle."""
+        # Common units and their variations
+        units = {
+            'kg': ['kg', 'kilo', 'kilogram'],
+            'g': ['g', 'gram'],
+            'l': ['l', 'liter', 'litre'],
+            'ml': ['ml', 'milliliter', 'millilitre'],
+            'ea': ['ea', 'each', 'unit', '']
+        }
+        
+        # Default values
+        unit_info = {
+            'size': '',
+            'unit_name': 'ea',
+            'unit_price': None
+        }
+        
+        # Combine name and subtitle for searching
+        full_text = f"{name} {subtitle}".lower()
+        
+        # Look for numbers followed by units
+        pattern = r'(\d+(?:\.\d+)?)\s*([a-zA-Z]+)'
+        matches = re.findall(pattern, full_text)
+        
+        if matches:
+            for value, unit in matches:
+                # Find the standardized unit
+                for std_unit, variations in units.items():
+                    if unit in variations:
+                        unit_info['size'] = f"{value}{std_unit}"
+                        unit_info['unit_name'] = std_unit
+                        break
+        
+        return unit_info
+
+    def build_category_hierarchy(self, category: str) -> List[str]:
+        """Build a hierarchical category list."""
+        if not category:
+            return []
+            
+        # Split category by any common separators
+        categories = [cat.strip() for cat in re.split(r'[/>,\|]', category) if cat.strip()]
+        
+        # Build hierarchical list
+        hierarchy = []
+        for i in range(len(categories)):
+            hierarchy.append(" > ".join(categories[:i+1]))
+            
+        return hierarchy
+
     async def extract_product_data(self, entry) -> Optional[Dict]:
         """Extract product data from the product entry."""
         product = {
@@ -120,136 +310,63 @@ class PaknSaveScraper:
             else:
                 logging.warning("Price element not found.")
 
+            # Extract product ID from the data-testid attribute
+            data_testid = await entry.get_attribute("data-testid")
+            if data_testid:
+                match = re.search(r'product-(\d+)-', data_testid)
+                product["product_id"] = f"pk{match.group(1)}" if match else None  # Prefix 'pk' to the product ID
+                logging.info(f"Extracted product ID: {product['product_id']}")
+            else:
+                logging.warning("data-testid attribute not found.")
+
             return product if product.get("name") else None
 
         except Exception as e:
             logging.error(f"Error in extract_product_data: {e}")
             return None
 
-    async def fetch_categories(self, page) -> List[Dict[str, str]]:
-        """Fetch all available categories from the website."""
-        try:
-            await self.safe_get(page, 'https://www.paknsave.co.nz/shop/category/fresh-foods-and-bakery?pg=1')
-
-            # Close the tooltip if it appears
-            try:
-                tooltip_close_button = await page.query_selector('button._19kx3s2')
-                if tooltip_close_button:
-                    await tooltip_close_button.click()
-                    logging.info("Closed the tooltip")
-            except Exception as e:
-                logging.warning(f"Tooltip not found or unable to close it: {e}")
-
-            logging.info("Waiting for menu panel to load...")
-            groceries_button = await page.query_selector('//span[contains(text(), "Groceries")]/..')
-            if groceries_button:
-                await groceries_button.click()
-                logging.info("Clicked on the 'Groceries' menu item")
-                await asyncio.sleep(2)
-
-            categories = []
-            category_elements = await page.query_selector_all('button._177qnsx7')
-            for element in category_elements:
-                category_name = await element.inner_text()
-                if category_name.lower() in ["featured", "all null"]:
-                    continue
-                url_name = re.sub(r'[^a-zA-Z0-9 ]', '', category_name.lower()).replace(" & ", "-and-").replace(" ", "-")
-                url_name = url_name.replace("--", "-and-")
-                category_url = f"{self.config.base_url}/shop/category/{url_name}?pg=1"
-                categories.append({"name": category_name, "url": category_url})
-                logging.info(f"Found category: {category_name} - URL: {category_url}")
-
-            logging.info(f"Successfully fetched {len(categories)} categories")
-            return categories
-
-        except Exception as e:
-            logging.error(f"Error in fetch_categories: {e}", exc_info=True)
-            return []
-
-    async def scrape_products(self, page, category_url: str) -> List[Dict]:
-        """Scrape products from the given category URL."""
-        try:
-            await self.safe_get(page, category_url)
-            await asyncio.sleep(self.config.page_load_delay)
-
-            products = []
-            
-            while True:
-                await asyncio.sleep(random.uniform(2, 5))  # Random delay
-                product_elements = await page.query_selector_all('div[data-testid$="-EA-000"]')
-
-                for element in product_elements:
-                    product_data = await self.extract_product_data(element)
-                    if product_data:
-                        products.append(product_data)
-                        logging.info(f"Scraped product: {product_data.get('name')}")
-                    else:
-                        logging.warning("Product data extraction returned None.")
-
-                next_page = await page.query_selector('a[data-testid="pagination-increment"]')
-                if next_page:
-                    await next_page.click()
-                    await page.wait_for_load_state('networkidle')
-                else:
-                    break
-
-            logging.info(f"Total products scraped: {len(products)}")
-            return products
-            
-        except Exception as e:
-            logging.error(f"Error scraping products: {e}")
-            return []
-
-    async def scrape_all_categories(self, browser):
+    async def scrape_all_categories(self, playwright):
         """Scrape products from all categories."""
         try:
-            # First page to fetch categories
+            # First browser session to fetch categories
+            browser = await playwright.chromium.launch(headless=False)
             category_page = await browser.new_page()
             categories = await self.fetch_categories(category_page)
-            await category_page.close()
+            await browser.close()
 
             if not categories:
                 logging.error("No categories found to process")
                 return []
-
-            # Create a new page for product scraping
-            product_page = await browser.new_page()
             
             for category in categories:
                 try:
                     logging.info(f"Starting to scrape category: {category['name']}")
+                    
+                    # Create new browser session for each category
+                    category_browser = await playwright.chromium.launch(headless=False)
+                    product_page = await category_browser.new_page()
+                    
                     products = await self.scrape_products(product_page, category["url"])
                     
-                    # Add category information to each product
-                    for product in products:
-                        product["category"] = category["name"]
-                    
+                    # Products are already written to Frappe in scrape_products
                     self.all_products.extend(products)
                     logging.info(f"Completed scraping {len(products)} products from {category['name']}")
                     
                     # Save progress after each category
                     await self.save_progress()
                     
+                    # Close the browser session for this category
+                    await category_browser.close()
+                    
                 except Exception as e:
                     logging.error(f"Error scraping category {category['name']}: {e}")
                     continue
 
-            await product_page.close()
             return self.all_products
 
         except Exception as e:
             logging.error(f"Error in scrape_all_categories: {e}")
             return []
-
-    async def save_progress(self):
-        """Save current progress to a temporary file."""
-        temp_filename = f"paknsave_products_temp_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.json"
-        try:
-            with open(temp_filename, 'w') as f:
-                json.dump(self.all_products, f, indent=4)
-            logging.info(f"Progress saved to {temp_filename}")
-        except Exception as e:
-            logging.error(f"Error saving progress: {e}")
 
 async def save_products_to_json(products, filename):
     """Save scraped products to a JSON file."""
@@ -270,16 +387,13 @@ async def main():
     filename = f"paknsave_products_{datetime.now().strftime('%Y-%m-%d_%H-%M-%S')}.json"
     
     async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=False)
         scraper = PaknSaveScraper(config)
         
-        # Scrape all categories
-        all_products = await scraper.scrape_all_categories(browser)
+        # Pass playwright instance instead of browser
+        all_products = await scraper.scrape_all_categories(p)
         
         # Save final results
         await save_products_to_json(all_products, filename)
-        
-        await browser.close()
         logging.info(f"Scraping completed. Results written to {filename}")
 
 if __name__ == "__main__":

@@ -9,6 +9,8 @@ logging.basicConfig(level=logging.INFO)
 FRAPPE_URL = os.environ.get('FRAPPE_URL', 'https://app.besty.nz/api/resource/Product%20Item')
 FRAPPE_API_KEY = os.environ.get('FRAPPE_API_KEY', '32522add18495f4')
 FRAPPE_API_SECRET = os.environ.get('FRAPPE_API_SECRET', '45236bb4ab1dcc0')
+      
+
 
 def check_product_exists(product_id):
     headers = {
@@ -29,9 +31,13 @@ def update_product(product_id, product):
         'Authorization': f'token {FRAPPE_API_KEY}:{FRAPPE_API_SECRET}',
         'Content-Type': 'application/json'
     }
-    response = requests.put(f"{FRAPPE_URL}/{product_id}", json=product, headers=headers)
-    response.raise_for_status()
-    logging.info(f"Successfully updated product in Frappe: {product['productname']}")
+    try:
+        response = requests.put(f"{FRAPPE_URL}/{product_id}", json=product, headers=headers)
+        response.raise_for_status()
+        logging.info(f"Successfully updated product in Frappe: {product['productname']}")
+    except requests.exceptions.HTTPError as e:
+        logging.error(f"Failed to update product: {e}")
+        logging.error(f"Response content: {response.content}")
 
 def create_product(product):
     headers = {
@@ -39,9 +45,8 @@ def create_product(product):
         'Content-Type': 'application/json',
         'Expect': ''
     }
-    response = requests.post(FRAPPE_URL, json=product, headers=headers)
-    
     try:
+        response = requests.post(FRAPPE_URL, json=product, headers=headers)
         response.raise_for_status()
         logging.info(f"Successfully created product in Frappe: {product['productname']}")
     except requests.exceptions.HTTPError as e:
