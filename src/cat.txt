@@ -1,0 +1,472 @@
+
+
+### **1. Beverages**  
+1. **Water**:  
+   - Bottled Water: Spring Water, Distilled Water, Mineral Water  
+   - Sparkling Water: Carbonated Water, Naturally Sparkling Mineral Water  
+   - Flavored Water: Lemon Water, Berry-Infused Water  
+
+2. **Soft Drinks**:  
+   - Cola: Cola Syrup, Carbonated Cola Base  
+   - Lemonade: Fresh Lemons, Cane Sugar, Citric Acid  
+   - Energy Drinks: Taurine, Caffeine, Guarana  
+
+3. **Juices**:  
+   - Fresh Juices: Fresh Oranges, Apples, Carrots  
+   - Concentrates: Frozen Orange Concentrate, Pomegranate Concentrate  
+   - Organic Juices: Organic Kale, Organic Celery, Organic Apples  
+
+4. **Tea**:  
+   - Green Tea: Loose Green Tea Leaves, Matcha Powder  
+   - Herbal Tea: Dried Chamomile, Peppermint Leaves  
+   - Black Tea: Assam Tea Leaves, Darjeeling Tea Leaves  
+
+5. **Coffee**:  
+   - Whole Beans: Arabica Coffee Beans, Robusta Coffee Beans  
+   - Ground Coffee: Medium Roast Coffee, Espresso Grind Coffee  
+   - Instant Coffee: Freeze-Dried Coffee, Micro-Ground Coffee  
+
+6. **Alcoholic Beverages**:  
+   - Beer: Malted Barley, Hops  
+   - Wine: Fresh Grapes (Red, White)  
+   - Spirits: Sugarcane (for Rum), Wheat (for Vodka)  
+
+7. **Dairy-Based Drinks**:  
+   - Milkshakes: Fresh Milk, Ice Cream, Cocoa Powder  
+   - Lassi: Yogurt, Mango Pulp, Sugar  
+   - Smoothies: Bananas, Strawberries, Almond Milk  
+
+8. **Plant-Based Beverages**:  
+   - Almond Milk: Raw Almonds, Filtered Water  
+   - Soy Milk: Soybeans, Water  
+   - Coconut Water: Fresh Coconut  
+
+9. **Specialty Drinks**:  
+   - Kombucha: Tea Leaves, SCOBY, Sugar  
+   - Matcha Lattes: Matcha Powder, Plant-Based Milk  
+   - Protein Shakes: Whey Protein Powder, Fresh Bananas  
+
+10. **Seasonal Beverages**:  
+   - Hot Chocolate: Cocoa Powder, Milk, Sugar  
+   - Eggnog: Raw Eggs, Cream, Nutmeg  
+   - Apple Cider: Fresh Apples, Cinnamon  
+
+
+### **2. Bakery and Bread**  
+1. **Breads**:  
+   - Whole Wheat Bread: Whole Wheat Flour, Yeast, Honey  
+   - Multigrain Bread: Oats, Flaxseeds, Rye Flour  
+   - Sourdough Bread: Bread Flour, Sourdough Starter, Salt  
+   - Gluten-Free Bread: Almond Flour, Tapioca Flour  
+
+2. **Pastries**:  
+   - Croissants: Butter, Pastry Dough, Eggs  
+   - Danish: Cream Cheese, Fruit Fillings (Raspberry, Apple)  
+   - Tarts: Shortcrust Pastry, Custard, Fresh Fruits  
+
+3. **Cakes**:  
+   - Birthday Cake: Cake Flour, Eggs, Vanilla Extract  
+   - Pound Cake: Butter, Sugar, All-Purpose Flour  
+   - Gluten-Free Cake: Coconut Flour, Almond Meal, Xantham Gum  
+
+4. **Cookies**:  
+   - Chocolate Chip Cookies: Chocolate Chips, Brown Sugar, Butter  
+   - Oatmeal Cookies: Rolled Oats, Raisins, Cinnamon  
+   - Sugar-Free Cookies: Stevia, Almond Flour  
+
+5. **Muffins and Cupcakes**:  
+   - Blueberry Muffins: Fresh Blueberries, Milk, Baking Powder  
+   - Chocolate Cupcakes: Cocoa Powder, Whipped Cream Topping  
+   - Banana Muffins: Overripe Bananas, Greek Yogurt  
+
+6. **Pies**:  
+   - Apple Pie: Granny Smith Apples, Pie Crust, Cinnamon  
+   - Pumpkin Pie: Pumpkin Puree, Evaporated Milk, Nutmeg  
+   - Cherry Pie: Tart Cherries, Cornstarch  
+
+7. **Bagels and Rolls**:  
+   - Bagels: Bread Flour, Sesame Seeds, Poppy Seeds  
+   - Dinner Rolls: Milk, Active Dry Yeast, Sugar  
+
+8. **Doughs**:  
+   - Pizza Dough: Bread Flour, Olive Oil, Yeast  
+   - Puff Pastry: Butter, Cold Water, All-Purpose Flour  
+
+9. **Breakfast Pastries**:  
+   - Donuts: Flour, Vegetable Oil, Powdered Sugar  
+   - Cinnamon Rolls: Brown Sugar, Cream Cheese Frosting  
+
+10. **Artisan Bread**:  
+   - Ciabatta: High-Protein Flour, Olive Oil  
+   - Focaccia: Rosemary, Sea Salt, Olive Oil  
+
+---
+
+### **3. Dairy and Eggs**  
+1. **Milk**:  
+   - Whole Milk: Cow’s Milk, Pasteurized Milk  
+   - Skim Milk: Fat-Free Milk  
+   - Plant-Based Milk: Almond Milk, Oat Milk  
+
+2. **Butter and Margarine**:  
+   - Butter: Unsalted Butter, Cultured Butter  
+   - Margarine: Soy Oil, Palm Oil  
+
+3. **Cheese**:  
+   - Cheddar: Aged Cheddar, Mild Cheddar  
+   - Mozzarella: Fresh Mozzarella, Low-Moisture Mozzarella  
+   - Goat Cheese: Soft Goat Cheese, Aged Goat Cheese  
+
+4. **Yogurt**:  
+   - Flavored Yogurt: Vanilla Yogurt, Strawberry Yogurt  
+   - Greek Yogurt: Full-Fat Greek Yogurt, Non-Fat Greek Yogurt  
+
+5. **Eggs**:  
+   - Chicken Eggs: Free-Range Eggs, Organic Eggs  
+   - Duck Eggs: Large Duck Eggs  
+
+6. **Creams**:  
+   - Heavy Cream: Fresh Heavy Cream  
+   - Sour Cream: Cultured Cream  
+
+7. **Dairy Alternatives**:  
+   - Coconut Yogurt: Coconut Cream, Probiotic Cultures  
+   - Cashew Cheese: Raw Cashews, Nutritional Yeast  
+
+8. **Ice Cream**:  
+   - Classic Ice Cream: Milk, Cream, Vanilla Bean  
+   - Vegan Ice Cream: Coconut Milk, Agave Syrup  
+
+9. **Powdered and Condensed Milk**:  
+   - Powdered Milk: Whole Milk Powder, Skim Milk Powder  
+   - Condensed Milk: Sweetened Condensed Milk  
+
+10. **Specialty Dairy**:  
+   - Kefir: Kefir Grains, Milk  
+   - Ricotta: Whey, Lemon Juice  
+
+---
+
+### **4. Fruits and Vegetables**  
+1. **Fresh Vegetables**:  
+   - Leafy Greens: Spinach, Kale, Arugula  
+   - Root Vegetables: Carrots, Beets, Turnips  
+   - Cruciferous Vegetables: Broccoli, Cauliflower  
+
+2. **Fresh Fruits**:  
+   - Citrus: Oranges, Lemons, Limes  
+   - Berries: Strawberries, Blueberries, Raspberries  
+   - Tropical Fruits: Pineapple, Mango, Papaya  
+
+3. **Frozen Vegetables**:  
+   - Green Beans, Peas, Mixed Veggies  
+
+4. **Pre-Cut and Packaged Veggies**:  
+   - Spiralized Zucchini, Diced Butternut Squash  
+
+5. **Specialty Veggies**:  
+   - Exotic: Fennel, Baby Bok Choy  
+
+6. **Herbs and Aromatics**:  
+   - Fresh Herbs: Basil, Parsley  
+   - Aromatics: Garlic, Ginger  
+
+7. **Mushrooms**:  
+   - Button Mushrooms, Shiitake, Oyster  
+
+8. **Juicing Ingredients**:  
+   - Celery, Cucumbers, Fresh Turmeric  
+
+9. **Canned Vegetables**:  
+   - Diced Tomatoes, Corn Kernels  
+
+10. **Dried Fruits**:  
+   - Raisins, Dried Mango  
+
+---
+
+### **5. Meat and Seafood**  
+1. **Fresh Meat**:  
+   - Beef Cuts: Ribeye, Ground Beef  
+   - Chicken: Chicken Breasts, Drumsticks  
+   - Pork: Pork Chops, Tenderloin  
+
+2. **Seafood**:  
+   - Fish: Salmon Fillets, Tuna Steaks  
+   - Shellfish: Shrimp, Scallops  
+   - Crustaceans: Lobster, Crab  
+
+3. **Frozen Meat**:  
+   - Meat Patties, Frozen Chicken Wings  
+
+4. **Deli Meats**:  
+   - Ham, Turkey, Pastrami  
+
+5. **Cured Meats**:  
+   - Salami, Prosciutto  
+
+6. **Ground Meats**:  
+   - Ground Beef, Ground Turkey  
+
+7. **Organ Meats**:  
+   - Liver, Kidneys  
+
+8. **Game Meats**:  
+   - Venison, Duck  
+
+9. **Smoked Meats**:  
+   - Smoked Sausage, Smoked Salmon  
+
+10. **Seafood Alternatives**:  
+   - Plant-Based "Fish"  
+
+
+### **6. Pantry Staples**  
+1. **Grains**:  
+   - Rice: Jasmine, Basmati, Arborio  
+   - Quinoa: White Quinoa, Red Quinoa  
+   - Couscous: Regular, Israeli  
+
+2. **Pasta and Noodles**:  
+   - Pasta: Spaghetti, Penne, Fusilli  
+   - Noodles: Rice Noodles, Egg Noodles  
+
+3. **Oils**:  
+   - Cooking Oils: Olive Oil, Canola Oil, Sunflower Oil  
+   - Specialty Oils: Avocado Oil, Sesame Oil  
+
+4. **Spices and Herbs**:  
+   - Dried Spices: Cumin, Turmeric, Paprika  
+   - Dried Herbs: Oregano, Thyme, Rosemary  
+
+5. **Sauces**:  
+   - Tomato Sauce: Marinara, Passata  
+   - Soy Sauce: Light, Dark  
+   - Hot Sauce: Sriracha, Chili Oil  
+
+6. **Baking Supplies**:  
+   - Flours: All-Purpose, Whole Wheat, Coconut Flour  
+   - Sweeteners: Sugar, Honey, Agave Syrup  
+   - Leaveners: Baking Soda, Yeast  
+
+7. **Canned Goods**:  
+   - Beans: Black Beans, Chickpeas  
+   - Vegetables: Peas, Sweet Corn  
+
+8. **Legumes**:  
+   - Lentils: Red Lentils, Green Lentils  
+   - Dried Beans: Kidney Beans, Pinto Beans  
+
+9. **Pickles and Fermented Products**:  
+   - Pickled Cucumbers, Sauerkraut  
+
+10. **Snacking Staples**:  
+   - Peanut Butter, Almond Butter  
+
+---
+
+### **7. Snacks and Confectionery**  
+1. **Chips and Crackers**:  
+   - Potato Chips: Salted, Barbecue  
+   - Tortilla Chips: Corn, Blue Corn  
+   - Crackers: Whole Grain, Gluten-Free  
+
+2. **Nuts and Seeds**:  
+   - Nuts: Almonds, Cashews, Walnuts  
+   - Seeds: Chia Seeds, Sunflower Seeds  
+
+3. **Candy**:  
+   - Hard Candy: Peppermints, Lollipops  
+   - Gummies: Fruit Gummies, Sour Gummies  
+
+4. **Chocolate**:  
+   - Dark Chocolate: 70%, 85%  
+   - Milk Chocolate: Bars, Chocolate Chips  
+
+5. **Popcorn**:  
+   - Microwave Popcorn: Butter, Light Salt  
+   - Ready-To-Eat: Caramel, Cheese  
+
+6. **Protein and Granola Bars**:  
+   - Protein Bars: Peanut Butter, Chocolate  
+   - Granola Bars: Oats and Honey  
+
+7. **Baked Goods**:  
+   - Brownies, Blondies  
+
+8. **Trail Mixes**:  
+   - Dried Fruit Mix, Chocolate-Nut Mix  
+
+9. **Rice Cakes**:  
+   - Plain, Chocolate-Coated  
+
+10. **Specialty Snacks**:  
+   - Kale Chips, Seaweed Snacks  
+
+---
+
+### **8. Frozen Foods**  
+1. **Frozen Meals**:  
+   - Pizza: Cheese, Pepperoni  
+   - Lasagna: Meat, Vegetarian  
+
+2. **Frozen Breakfast**:  
+   - Waffles, Pancakes  
+
+3. **Frozen Vegetables**:  
+   - Mixed Veggies, Spinach  
+
+4. **Frozen Fruits**:  
+   - Berries, Mango  
+
+5. **Ice Cream**:  
+   - Vanilla, Chocolate  
+
+6. **Desserts**:  
+   - Cheesecake, Brownie Bites  
+
+7. **Frozen Snacks**:  
+   - Spring Rolls, Mozzarella Sticks  
+
+8. **Meat Alternatives**:  
+   - Veggie Burgers, Soy Nuggets  
+
+9. **Frozen Seafood**:  
+   - Breaded Shrimp, Salmon Fillets  
+
+10. **Specialty Frozen**:  
+   - Acai Bowls  
+
+---
+
+### **9. Health and Wellness**  
+1. **Vitamins and Supplements**:  
+   - Multivitamins, Vitamin D  
+
+2. **Gluten-Free Products**:  
+   - Gluten-Free Flour, Crackers  
+
+3. **Organic Foods**:  
+   - Organic Almonds, Organic Honey  
+
+4. **Sports Nutrition**:  
+   - Protein Powder, Electrolyte Drinks  
+
+5. **Weight Management**:  
+   - Low-Calorie Snacks  
+
+6. **Herbal Remedies**:  
+   - Echinacea, Turmeric  
+
+7. **Non-Dairy Alternatives**:  
+   - Cashew Milk, Oat Yogurt  
+
+8. **Keto Products**:  
+   - Almond Flour, Keto Bars  
+
+9. **Vegan Products**:  
+   - Nutritional Yeast, Vegan Cheese  
+
+10. **Fermented Foods**:  
+   - Kimchi, Kombucha  
+
+---
+
+### **10. Household Supplies**  
+1. **Cleaning Supplies**:  
+   - Detergents: Liquid, Powder  
+   - Surface Cleaners: All-Purpose, Glass  
+
+2. **Paper Products**:  
+   - Toilet Paper, Paper Towels  
+
+3. **Trash Bags**:  
+   - Biodegradable, Heavy-Duty  
+
+4. **Storage**:  
+   - Zip-Lock Bags, Food Containers  
+
+5. **Laundry**:  
+   - Fabric Softeners, Stain Removers  
+
+6. **Air Fresheners**:  
+   - Aerosol, Plug-Ins  
+
+7. **Kitchen Supplies**:  
+   - Aluminum Foil, Parchment Paper  
+
+8. **Disposables**:  
+   - Plates, Cutlery  
+
+9. **Bathroom Supplies**:  
+   - Soap, Toilet Cleaner  
+
+10. **Pest Control**:  
+   - Ant Spray, Mosquito Repellents  
+
+---
+
+### **11. Baby and Childcare**  
+1. **Baby Food**:  
+   - Pureed Vegetables, Fruit Pouches  
+
+2. **Formula**:  
+   - Dairy-Based, Soy-Based  
+
+3. **Diapers**:  
+   - Cloth, Disposable  
+
+4. **Wipes**:  
+   - Fragrance-Free, Moisturizing  
+
+5. **Toys**:  
+   - Wooden Toys, Plush Animals  
+
+6. **Baby Care Products**:  
+   - Baby Shampoo, Diaper Rash Cream  
+
+7. **Toddler Snacks**:  
+   - Fruit Bars, Yogurt Melts  
+
+8. **Baby Bottles**:  
+   - Glass, Plastic  
+
+9. **Pacifiers**:  
+   - Silicone, Rubber  
+
+10. **Safety Products**:  
+   - Baby Gates, Outlet Covers  
+
+
+### **12. Pet Supplies**  
+1. **Pet Food**:  
+   - Dry Food: Chicken, Fish Formula  
+   - Wet Food: Lamb Stew, Tuna  
+
+2. **Treats**:  
+   - Biscuits, Chews  
+
+3. **Pet Accessories**:  
+   - Leashes, Bowls  
+
+4. **Toys**:  
+   - Chew Toys, Ball Toys  
+
+5. **Litter Products**:  
+   - Clumping Litter, Silica-Based Litter  
+
+6. **Pet Health**:  
+   - Flea Treatment, Vitamins  
+
+7. **Grooming**:  
+   - Brushes, Nail Clippers  
+
+8. **Beds and Cages**:  
+   - Cushioned Beds, Bird Cages  
+
+9. **Training Products**:  
+   - Clickers, Pads  
+
+10. **Specialty Diets**:  
+   - Grain-Free, High-Protein  
+

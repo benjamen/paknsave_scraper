@@ -61,11 +61,10 @@ class PaknSaveScraper:
         """Fetch additional details from individual product page."""
         details = {}
         try:
-            await self.safe_get(page, product_url)
 
             # Fetch categories with new structure
-            category_data = await self.fetch_product_categories(product_url)
-            details['category_data'] = category_data
+            # category_data = await self.fetch_product_categories(product_url)
+            # details['category_data'] = category_data
 
             # Get product name
             name_elem = await page.query_selector('[data-testid="product-title"]')
@@ -152,19 +151,12 @@ class PaknSaveScraper:
             except Exception as e:
                 logging.error(f"Error in finally block of fetch_product_details: {e}")
 
+
     async def fetch_product_categories(self, product_url: str) -> Dict[str, str]:
-        """Fetch categories for a specific product using a fresh browser session."""
-        try:
-            context = await self.browser.new_context(
-                viewport={'width': 1920, 'height': 1080},
-                user_agent='Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
-            )
-            
-            page = await context.new_page()
+        """Fetch categories for a specific product using a fresh browser session with optional proxy."""
+ 
             
             try:
-                await self.safe_get(page, product_url)
-                await asyncio.sleep(5)
                 
                 category_data = {
                     'categories_list': [],
@@ -173,16 +165,7 @@ class PaknSaveScraper:
                 }
                 
                 categories = []
-                
-                # Extract the categories
-                breadcrumbs = await page.query_selector('nav[aria-label="Breadcrumbs"]')
-                if breadcrumbs:
-                    for i in range(3):
-                        category = await page.query_selector(f'[data-testid="product-category-{i}"] p')
-                        if category:
-                            category_text = await category.inner_text()
-                            if category_text:
-                                categories.append(category_text.strip())
+
                 
                 # Get product name without 'ea' suffix
                 product_name = await page.query_selector('[data-testid="product-title"]')
@@ -214,6 +197,7 @@ class PaknSaveScraper:
         except Exception as e:
             logging.error(f"Error creating browser context: {e}")
             return {}
+
 
     def transform_to_frappe_format(self, product: Dict) -> Dict:
         """Transform scraped product data to Frappe format."""
